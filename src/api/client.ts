@@ -3,9 +3,12 @@ import type { operations } from "./schema";
 /**
  * 健康探针成功响应的类型——直接取自 openapi.json 的生成结果，
  * 不手写镜像：后端改契约后重新 codegen，这里会跟着变、编译期即暴露不一致。
+ *
+ * key 用 `application/json`：契约由 NestJS 派生，声明的是真实响应类型；
+ * 迁移前由 Springdoc 生成，写的是通配媒体类型。
  */
 export type HealthResponse =
-  operations["health"]["responses"][200]["content"]["*/*"];
+  operations["health"]["responses"][200]["content"]["application/json"];
 
 export const HEALTH_ENDPOINT = "/api/health";
 

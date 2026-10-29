@@ -28,13 +28,12 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        /** @description 健康探针响应 */
         HealthResponse: {
             /**
              * @description 服务状态，存活时为 ok
              * @example ok
              */
-            status?: string;
+            status: string;
         };
     };
     responses: never;
@@ -54,13 +53,12 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description OK */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["HealthResponse"];
+                    "application/json": components["schemas"]["HealthResponse"];
                 };
             };
         };
